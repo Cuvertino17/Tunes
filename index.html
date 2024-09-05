@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tunes - Landing Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #F7F8F9;
+            /* Light theme background color */
+            color: #161A1D;
+            /* Light theme text color */
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background-color: inherit;
+            /* Inherit background color from body */
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 50px;
+            /* Adjusted width */
+            height: auto;
+            /* Maintain aspect ratio */
+            margin-right: 10px;
+            /* Space between logo and title */
+            border-radius: 10px;
+            /* Rounded corners for the logo */
+        }
+
+        .title {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+            /* Push the items to the right */
+        }
+
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .theme-toggle input {
+            display: none;
+        }
+
+        .theme-toggle label {
+            background-color: #ddd;
+            /* Default toggle background color */
+            border-radius: 15px;
+            width: 50px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .theme-toggle .slider {
+            background-color: #ffffff;
+            /* Slider color */
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            background-image: url('sun.png');
+            /* Default sun icon for light theme */
+            background-size: 16px;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: transform 0.3s, background-image 0.3s;
+        }
+
+        .theme-toggle input:checked+label {
+            background-color: #007bff;
+            /* Toggle background color when checked */
+        }
+
+        .theme-toggle input:checked+label .slider {
+            transform: translateX(25px);
+            background-image: url('moon.png');
+            /* Moon icon for dark theme */
+        }
+
+        .dark-mode {
+            background-color: #161A1D;
+            /* Dark theme background color */
+            color: #F7F8F9;
+            /* Dark theme text color */
+        }
+
+        .dark-mode .theme-toggle label {
+            background-color: #444;
+            /* Dark theme toggle background */
+        }
+
+        .body-content {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            /* Align items to the top */
+            justify-content: space-between;
+            padding: 30px;
+            max-width: 900px;
+            margin: auto;
+            gap: 20px;
+        }
+
+        .left-content {
+            flex: 65%;
+        }
+
+        .left-content h1 {
+            font-size: 30px;
+            margin-bottom: 20px;
+            margin-top: 70px;
+        }
+
+        .left-content p {
+            font-weight: bold;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .left-content ul {
+            font-weight: bold;
+            font-size: 15px;
+            line-height: 1.5;
+
+            text-align: left;
+        }
+
+        .left-content ul {
+            margin-bottom: 40px;
+        }
+
+        .right-content {
+            flex: 35%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            /* Align image to the top */
+        }
+
+        .right-content img {
+            margin: 30px;
+            max-width: 90%;
+            height: auto;
+            max-height: 90%;
+            /* Ensure image is slightly bigger than text but within frame */
+        }
+
+        .buttons {
+            display: flex;
+            /* justify-content: ; */
+            margin-top: 20px;
+        }
+
+        .download-button {
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 10px;
+            transition: background-color 0.3s, transform 0.3s;
+            box-sizing: border-box;
+            height: 50px;
+            /* Set the height */
+            width: 200px;
+            /* Set the width */
+        }
+
+        .coffee {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-weight: bold;
+
+            border-radius: 10px;
+            transition: background-color 0.3s, transform 0.3s;
+            box-sizing: border-box;
+            height: 50px;
+            /* Set the height */
+            width: 200px;
+            /* Set the width */
+        }
+
+        .download-button {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .download-button:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+
+        .coffee-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 10px;
+            transition: background-color 0.3s, transform 0.3s;
+            box-sizing: border-box;
+            height: 50px;
+            /* Set the height */
+            width: 200px;
+            /* Set the width */
+            position: relative;
+            /* Add position relative */
+            overflow: hidden;
+            /* Hide overflowing content */
+        }
+
+        .coffee-button img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+        }
+
+
+        .coffee {
+
+            background-color: transparent;
+            color: white;
+        }
+
+        /* .coffee:hover {
+            transform: scale(1.05);
+        } */
+
+        .icon {
+            width: 30px;
+            /* Set width to fit within the button */
+            height: 30px;
+            /* Set height to fit within the button */
+            margin-right: 8px;
+        }
+
+        .screenshot-images {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .image-container {
+            height: 100;
+            flex: 35%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            display: flex;
+            overflow-x: auto;
+            /* Enable horizontal scrolling */
+            gap: 10px;
+        }
+
+        .image-container img {
+
+            margin: 30px;
+            max-width: 100%;
+            height: auto;
+
+            max-height: 75vh
+        }
+
+        .scrollable-boxes {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .box-container {
+        display: flex;
+        overflow-x: auto;
+        gap: 20px;
+        justify-content: center; /* Center the boxes horizontally */
+    }
+
+    .box {
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 200px;
+    background-color: #f7f7f7; /* Default box background color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add box shadow for hovering effect */
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s; /* Smooth transition on hover and theme switch */
+    margin-top: 20px; /* Add margin at the top of each box */
+    margin-bottom: 20px; /* Add margin at the bottom of each box */
+}
+
+.dark-mode .box {
+    background-color: #333; /* Dark mode box background color */
+    color: #fff; /* Dark mode text color */
+}
+
+.box:hover {
+    transform: translateY(-5px); /* Move the box up on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase box shadow on hover */
+    cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+
+    .box img {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 10px;
+    }
+
+
+        @media (max-width: 768px) {
+            .body-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .left-content,
+            .right-content {
+                flex: none;
+                width: 100%;
+                margin: 0;
+                /* Remove any existing margin */
+            }
+
+            .right-content {
+                margin-top: 20px;
+                max-height: none;
+            }
+
+            .buttons {
+                display: flex;
+                flex-direction: column;
+                /* Stack buttons vertically */
+                align-items: center;
+                /* Center buttons horizontally */
+                margin-top: 20px;
+            }
+
+            .download-button,
+            .coffee-button {
+                width: 80%;
+                /* Adjust button width */
+                margin: 10px 0;
+                /* Add margin between buttons */
+            }
+
+            .image-container {
+                flex-direction: column;
+                /* Stack images vertically on mobile */
+                align-items: center;
+                /* Center images horizontally */
+                overflow-x: hidden;
+                /* Disable horizontal scrolling on mobile */
+            }
+
+            .box-container {
+                flex-direction: column;
+                align-items: center;
+                overflow-x: hidden;
+            }
+
+            .box {
+                max-width: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="logo">
+            <img src="logo.png" alt="Tunes Logo">
+            <div class="title">Tunes</div>
+        </div>
+        <div class="header-right">
+            <div class="theme-toggle">
+                <input type="checkbox" id="theme-switch">
+                <label for="theme-switch">
+                    <div class="slider"></div>
+                </label>
+            </div>
+        </div>
+    </header>
+
+    <!-- Body Section -->
+    <section class="body-content">
+        <div class="left-content">
+            <h1>Tunes - The Ultimate Free Music Streaming Experience</h1>
+            <p>
+                Discover the best music streaming app that combines the power of Spotify and YouTube Music,
+                with the added benefits of being open-source and ad-free. Tunes offers an unparalleled music
+                library, offline support, and free downloading, all wrapped in an easy-to-use interface.
+            </p>
+            <div class="buttons" onclick="">
+                <a id="download-button" href="#" class="download-button">
+                    <img src="android.png" alt="Android Icon" class="icon">
+                    Download
+                </a>
+                <a href="https://www.buymeacoffee.com/cuvertino" class="coffee-button">
+                    <img src="coffee.png" alt="Buy Me a Coffee" class="coffee">
+                </a>
+            </div>
+
+
+
+
+        </div>
+        <div class="right-content">
+            <img src="phone-mockup.png" alt="Phone Mockup">
+        </div>
+    </section>
+    <!-- Key Features Section -->
+    <!-- <section class="body-content">
+
+        <div class="left-content">
+            <ul>
+                <li>Massive music library comparable to Spotify and YouTube Music</li>
+                <li>Open-source and ad-free, always free to use</li>
+                <li>Offline support and free downloading of songs</li>
+                <li>Intuitive and minimalistic user interface</li>
+                <li>Customizable settings to personalize your experience</li>
+                <li>Ability to import playlists from other platforms like Spotify</li>
+            </ul>
+        </div>
+
+
+    </section> -->
+
+    <!-- Horizontally Scrollable Boxes Section -->
+    <section class="scrollable-boxes">
+     
+        <div class="box-container">
+            <div class="box">
+                <img src="playlist.png" alt="Feature 1 Logo">
+                <p>Massive music library comparable to Spotify and YouTube Music</p>
+            </div>
+            <div class="box">
+                <img src="noads.png" alt="Feature 2 Logo">
+                <p>Open-source and ad-free, always free to use</p>
+            </div>
+            <div class="box">
+                <img src="download.png" alt="Feature 3 Logo">
+                <p>Offline support and free downloading of songs</p>
+            </div>
+            <div class="box">
+                <img src="money.png" alt="Feature 3 Logo">
+                <p>No subscriptions or ads stream free music forever</p>
+            </div>
+             
+            <!-- Add more boxes as needed -->
+        </div>
+    </section>
+    <!-- Screenshot Images Section -->
+    <section class="screenshot-images">
+
+        <div class="image-container">
+            <img src="ss1.png" alt="Screenshot 1">
+            <img src="ss2.png" alt="Screenshot 2">
+            <img src="ss3.png" alt="Screenshot 3">
+        </div>
+    </section>
+
+    <!-- JavaScript for Theme Toggle -->
+    <script>
+        const toggleSwitch = document.getElementById('theme-switch');
+        const bodyElement = document.body;
+
+        toggleSwitch.addEventListener('change', () => {
+            if (toggleSwitch.checked) {
+                bodyElement.classList.add('dark-mode');
+            } else {
+                bodyElement.classList.remove('dark-mode');
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const downloadButton = document.getElementById('download-button');
+
+            downloadButton.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent default link behavior
+
+                // You can use the `navigator.userAgent` to infer architecture
+                const userAgent = navigator.userAgent.toLowerCase();
+                let apkUrl;
+
+                if (userAgent.includes('arm64') || userAgent.includes('aarch64')) {
+                    apkUrl = 'https://github.com/Cuvertino17/musichub-release/releases/download/v2.0.0/app-arm64-v8a-release.apk';
+                } else if (userAgent.includes('arm')) {
+                    apkUrl = 'https://github.com/Cuvertino17/musichub-release/releases/download/v2.0.0/app-armeabi-v7a-release.apk';
+                } else if (userAgent.includes('x86_64') || userAgent.includes('x64')) {
+                    apkUrl = 'https://github.com/Cuvertino17/musichub-release/releases/download/v2.0.0/app-x86_64-release.apk';
+                } else {
+                    apkUrl = 'https://github.com/Cuvertino17/musichub-release/releases/download/v2.0.0/app-armeabi-v7a-release.apk'; // Default to a common architecture
+                }
+
+                // Start download
+                window.location.href = apkUrl;
+            });
+        });
+    </script>
+</body>
+
+</html>
